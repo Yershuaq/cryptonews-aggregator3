@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Результат</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <h1>📊 Результаты по криптовалюте: <strong>{{ symbol }}</strong></h1>
+
+    {% if crypto_data | length > 0 %} {% for item in crypto_data %}
+    <div style="margin-bottom: 20px;">
+        <h3>{{ item.title }}</h3>
+        <p><strong>Источник:</strong> {{ item.source }}</p>
+        <p><strong>Описание:</strong> {{ item.summary }}</p>
+        <a href="{{ item.url }}" target="_blank">🔗 Подробнее</a>
+    </div>
+    {% endfor %} {% else %}
+    <p style="color: red;">😢 Информация по "{{ symbol }}" не найдена.</p>
+    {% endif %}
+
+    <h2>📰 Последние новости</h2>
+    {% if crypto_news | length > 0 %} {% for news in crypto_news %}
+    <div style="margin-bottom: 20px; border-left: 3px solid #ccc; padding-left: 10px;">
+        <h3>{{ news.title }}</h3>
+        <p><strong>Источник:</strong> {{ news.source }}</p>
+        <p><strong>Дата:</strong> {{ news.published_on | date(format="%Y-%m-%d %H:%M") }}</p>
+        <a href="{{ news.url }}" target="_blank">🔗 Читать новость</a>
+    </div>
+    {% endfor %} {% else %}
+    <p style="color: red;">😢 Новости по "{{ symbol }}" не найдены.</p>
+    {% endif %}
+
+    <br>
+    <a href="/">← Назад к поиску</a>
+</body>
+
+</html>
