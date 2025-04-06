@@ -5,11 +5,9 @@ use crate::models::news::NewsItem;
 pub async fn fetch_coingecko_data(coin: &str) -> Result<Vec<NewsItem>, reqwest::Error> {
     let coin_id = coin.to_lowercase();
 
-    // 1. Получаем описание
     let desc_url = format!("https://api.coingecko.com/api/v3/coins/{}", coin_id);
     let desc_resp = reqwest::get(&desc_url).await?.json::<Value>().await;
 
-    // 2. Получаем цену
     let price_url = format!(
         "https://api.coingecko.com/api/v3/simple/price?ids={}&vs_currencies=usd",
         coin_id
@@ -18,7 +16,6 @@ pub async fn fetch_coingecko_data(coin: &str) -> Result<Vec<NewsItem>, reqwest::
 
     let mut news_list = Vec::new();
 
-    // Добавляем описание, если есть
     if let Ok(desc_json) = &desc_resp {
         if let Some(desc) = desc_json["description"]["en"].as_str() {
             news_list.push(NewsItem {
@@ -31,7 +28,6 @@ pub async fn fetch_coingecko_data(coin: &str) -> Result<Vec<NewsItem>, reqwest::
         }
     }
 
-    // Добавляем цену, если есть
     if let Ok(price_json) = &price_resp {
         if let Some(price) = price_json[&coin_id]["usd"].as_f64() {
             news_list.push(NewsItem {

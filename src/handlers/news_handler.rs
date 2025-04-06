@@ -58,6 +58,6 @@ pub async fn search(
 pub async fn get_news(symbol: web::Path<String>) -> impl Responder {
     match fetch_crypto_news(&symbol).await {
         Ok(news) => HttpResponse::Ok().json(news),
-        Err(_) => HttpResponse::InternalServerError().body("Ошибка при получении новостей"),
+        Err(_) => HttpResponse::InternalServerError().body("Error fetching news"),
     }
 }

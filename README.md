@@ -26,8 +26,9 @@ cargo run
 - Поиск крипты: `http://127.0.0.1:8080/news/bitcoin`
 
 ## 📷 Скриншоты
-![Главная страница](./screenshots/home.png)
-![Поиск BTC](./screenshots/news-btc.png)
+![Главная страница](photo_2_2025-04-06_20-16-34.jpg)
+![Поиск BTC](photo_1_2025-04-06_20-16-34.jpg) 
+![Поиск BTC](photo_3_2025-04-06_20-16-34.jpg)
 
 ## 📂 Примеры
 
@@ -49,4 +50,4 @@ cargo run
 MIT License — см. [LICENSE](./LICENSE)
 
 ## 🧑‍💻 Автор
-Nurasyl — финальный проект по Blockchain Tech, 2025-04-04
+Nurasyl and Yershuak —  Blockchain Tech, 2025-04-04

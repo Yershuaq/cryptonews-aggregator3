@@ -8,7 +8,6 @@ mod handlers;
 mod models;
 mod utils;
 
-// 👇 Главная HTML-страница с формой поиска
 async fn index(tmpl: web::Data<Tera>) -> impl Responder {
     let ctx = Context::new();
     let rendered = tmpl.render("index.html", &ctx).unwrap();
@@ -20,7 +19,6 @@ async fn main() -> std::io::Result<()> {
     dotenv().ok();
     println!("🚀 Сервер запущен: http://127.0.0.1:8080");
 
-    // Инициализация шаблонов Tera
     let tera = Tera::new("src/templates/**/*").unwrap();
 
     HttpServer::new(move || {
